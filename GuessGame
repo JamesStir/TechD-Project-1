@@ -1,0 +1,9 @@
+import random
+
+
+def start_game():
+    #prints the welcoming banner for the game
+    print("-" * 30, '\n',
+        'Welcome to the Guessing Game!', '\n', 
+        "-" * 28, '\n')
+        
