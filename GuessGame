@@ -12,3 +12,47 @@ if __name__ == '__main__':
     start_game()
     attempts = 0
     high_score = 0
+    while True:
+        #A loop to continuously run through until the game is completed
+        answer = random.randint(1, 10)
+        while True:
+            try:
+                guess = int(input("Please guess a number between 1 and 10:  "))
+            except ValueError:
+                #Exception to catch anything that can't be coerced into an int
+                print("Not a valid number. Please try again.")
+                continue
+            #Conditions to check guess against answer
+            if 11 > guess > answer:
+                attempts += 1
+                print("Sorry. It's lower, please try again.")
+                continue
+            elif 0 < guess < answer:
+                attempts += 1
+                print("Sorry. It's higher, please try again.")
+                continue
+            elif guess > 10 or guess < 1:
+                print("Sorry. That isn't a valid number, please try again.")
+                continue
+            elif guess == answer:
+                attempts += 1
+                print("You got it!")
+                if attempts == 1:
+                    print("It took you {} try.".format(attempts))
+                else:
+                    print("It took you {} tries.".format(attempts))
+                print("The game is over, unless you'd like to play again.")
+                break
+        #Prompt to check if user wishes to play again and to store high score incase they do
+        try_again = input("Would you like to play again? [Y]es or [N]o?  ")
+        if try_again.upper() == 'Y':
+            high_score = attempts if attempts < high_score or high_score is 0 else high_score
+            print('\n', "Your high score is {}.".format(high_score), '\n')
+            attempts = 0
+            continue
+        elif try_again.upper() == 'N':
+            print('Then have a good day. Goodbye.')
+            break
+        else:
+            print("I couldn't make that out. Please try again later. Bye-bye.")
+            break
